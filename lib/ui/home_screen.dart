@@ -43,14 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
           return const Scaffold(
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "Getting Media",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                Center(
+                  child: Text(
+                    "Getting Media",
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
                 CircularProgressIndicator(),
@@ -62,7 +64,15 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             centerTitle: true,
-            title: const Text("Textatize"),
+            title: const Text(
+              "Textatize",
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+                color: Colors.black,
+              ),
+            ),
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -88,14 +98,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 64,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ShareTile(Icon(Icons.copy)),
-                    ShareTile(Icon(Icons.save_alt))
+                    ShareTile(
+                      const Icon(Icons.copy),
+                      "Copy to Clipboard",
+                      context.read<HomeBloc>().media!.url,
+                    ),
+                    ShareTile(
+                      const Icon(Icons.save_alt),
+                      "Save Photo",
+                      context.read<HomeBloc>().media!.url,
+                    ),
                   ],
                 ),
               ),

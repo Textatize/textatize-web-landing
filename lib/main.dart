@@ -15,31 +15,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Textatize Media",
       theme: ThemeData(
-        primaryColor: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       routes: {
         "/": (context) => BlocProvider(
-              create: (context) => HomeBloc()
-                ..add(GetMedia(mediaId: "default", context: context)),
-              child: const HomeScreen(),
-            ),
+          create: (context) => HomeBloc()..add(GetMedia(mediaId: "default", context: context)),
+          child: const HomeScreen(),
+        ),
       },
       onGenerateRoute: (settings) {
         // Parse the route
         String mediaId = settings.name!.substring(1);
 
-        return MaterialPageRoute(
-          builder: (context) {
-            return BlocProvider(
-              create: (context) =>
-                  HomeBloc()..add(GetMedia(mediaId: mediaId, context: context)),
-              child: const HomeScreen(),
-            );
-          },
-        );
+        return MaterialPageRoute(builder: (context) {
+          return BlocProvider(
+            create: (context) => HomeBloc()..add(GetMedia(mediaId: mediaId, context: context)),
+            child: const HomeScreen(),
+          );
+        },);
       },
       initialRoute: "/",
     );
