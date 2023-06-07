@@ -19,7 +19,7 @@ class ShareTile extends StatelessWidget {
           if (icon.icon == Icons.copy) {
             Clipboard.setData(
               ClipboardData(
-                text: url,
+                text: window.location.href,
               ),
             ).then((_) {
               ScaffoldMessenger.of(context).showSnackBar(
