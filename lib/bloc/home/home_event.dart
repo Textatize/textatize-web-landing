@@ -4,8 +4,8 @@ part of "home_bloc.dart";
 abstract class HomeEvent {}
 
 class GetMedia extends HomeEvent {
-  final String uniqueId;
+  final String mediaId;
   final BuildContext context;
 
-  GetMedia({required this.uniqueId, required this.context});
+  GetMedia({required this.mediaId, required this.context});
 }

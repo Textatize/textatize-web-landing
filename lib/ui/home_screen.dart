@@ -1,4 +1,8 @@
+import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:textatize_landing/bloc/home/home_bloc.dart";
+import "package:textatize_landing/ui/helpers/share_tile.dart";
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,8 +14,57 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Textatize"),),
+    return BlocConsumer<HomeBloc, HomeState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is! HomeLoaded) {
+          return const Scaffold(
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Getting Media",
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                CircularProgressIndicator(),
+              ],
+            ),
+          );
+        }
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text("Textatize"),
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: CachedNetworkImage(
+                  imageUrl: context.read<HomeBloc>().media!.url,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(
+                    Icons.error,
+                    color: Colors.red,
+                    size: 64,
+                  ),
+                ),
+              ),
+              ListView(
+                scrollDirection: Axis.horizontal,
+                children: const [
+                  ShareTile(Icon(Icons.copy)),
+                  ShareTile(Icon(Icons.save_alt))
+                ],
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
