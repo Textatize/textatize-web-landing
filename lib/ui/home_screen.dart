@@ -19,23 +19,28 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, state) {
         if (state is HomeError) {
           return Scaffold(
-            body: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.error,
-                    size: 64,
+            body: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.error,
+                      size: 64,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Error: ${state.error}\nRefresh to try again",
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Error: ${state.error}\nRefresh to try again",
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         }
@@ -88,7 +93,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   errorWidget: (context, url, error) {
-                    print("URL: $url");
                     print(error);
                     return const Icon(
                       Icons.error,
