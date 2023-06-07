@@ -17,6 +17,28 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocConsumer<HomeBloc, HomeState>(
       listener: (context, state) {},
       builder: (context, state) {
+        if (state is HomeError) {
+          return Scaffold(
+            body: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.error,
+                    size: 64,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Error: ${state.error}\nRefresh to try again",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
         if (state is! HomeLoaded) {
           return const Scaffold(
             body: Column(

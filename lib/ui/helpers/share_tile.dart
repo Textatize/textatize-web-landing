@@ -9,11 +9,8 @@ class ShareTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () async {
-        if (icon.icon == Icons.copy) {
-
-        }
-        if (icon.icon == Icons.facebook) {}
-        if (icon.icon == Icons.save_alt) {}
+        if (icon.icon == Icons.copy) {}
+        if (icon.icon == Icons.download) {}
       },
       icon: icon,
     );
