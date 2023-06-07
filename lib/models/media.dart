@@ -6,11 +6,13 @@ class Media {
   final int createdTime;
   final int updatedTime;
   final String createdFormatted;
+  final String entityStatus;
 
   Media({
     required this.uniqueId,
     required this.type,
     required this.url,
+    required this.entityStatus,
     required this.created,
     required this.updatedTime,
     required this.createdTime,
@@ -18,11 +20,11 @@ class Media {
   });
 
   factory Media.fromJson(Map<String, dynamic> json) {
-    print("Start\n$json\nEnd");
     return Media(
-        uniqueId: json["uniqueId"],
+        uniqueId: json["unique_id"],
         type: json["type"],
         url: json["url"],
+        entityStatus: json["entityStatus"],
         created: json["created"],
         updatedTime: json["updated_time"],
         createdTime: json["created_time"],

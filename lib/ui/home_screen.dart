@@ -46,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   "Getting Media",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
@@ -59,6 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
+            centerTitle: true,
             title: const Text("Textatize"),
           ),
           body: Column(
@@ -67,21 +70,34 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: CachedNetworkImage(
                   imageUrl: context.read<HomeBloc>().media!.url,
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => const Icon(
-                    Icons.error,
-                    color: Colors.red,
-                    size: 64,
+                  placeholder: (context, url) => const Center(
+                    child: SizedBox(
+                      width: 64,
+                      height: 64,
+                      child: CircularProgressIndicator(),
+                    ),
                   ),
+                  errorWidget: (context, url, error) {
+                    print("URL: $url");
+                    print(error);
+                    return const Icon(
+                      Icons.error,
+                      color: Colors.red,
+                      size: 64,
+                    );
+                  },
                 ),
               ),
-              ListView(
-                scrollDirection: Axis.horizontal,
-                children: const [
-                  ShareTile(Icon(Icons.copy)),
-                  ShareTile(Icon(Icons.save_alt))
-                ],
+              const SizedBox(
+                height: 64,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ShareTile(Icon(Icons.copy)),
+                    ShareTile(Icon(Icons.save_alt))
+                  ],
+                ),
               ),
             ],
           ),
