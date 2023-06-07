@@ -11,13 +11,18 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
-  bloc: ^8.1.2
-  flutter_bloc: ^8.1.3
-  meta: ^1.9.1
-  video_player: ^2.6.1
-  cached_network_image: ^3.2.3
-  http: ^0.13.6
+  # State Management
+  flutter_bloc: ^8.1.3 # State Managment Solution
+  bloc: ^8.1.2 # BLoC Dependency
+  meta: ^1.9.1 # BLoC Dependency
+
+  # Web Helpers
+  http: ^0.13.6 # To make API calls
+  cached_network_image: ^3.2.3 # Saving Memory
+
+  # Other
+  cupertino_icons: ^1.0.2 # Default Flutter Dependency
+  url_strategy: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -26,5 +31,4 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-
   uses-material-design: true

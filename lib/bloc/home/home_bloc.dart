@@ -1,11 +1,10 @@
 
 
-import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:meta/meta.dart';
+import "package:bloc/bloc.dart";
+import "package:flutter/material.dart";
 
-part 'home_event.dart';
-part 'home_state.dart';
+part "home_event.dart";
+part "home_state.dart";
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeUnloaded()) {
@@ -15,7 +14,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
         emit(HomeLoaded());
       } catch(e) {
-        emit(HomeError());
+        emit(HomeError(e.toString()));
       }
     });
   }

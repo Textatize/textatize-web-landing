@@ -1,4 +1,4 @@
-part of 'home_bloc.dart';
+part of "home_bloc.dart";
 
 @immutable
 abstract class HomeState {}
@@ -9,4 +9,8 @@ class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {}
 
-class HomeError extends HomeState {}
+class HomeError extends HomeState {
+  final String error;
+
+  HomeError(this.error);
+}
