@@ -1,12 +1,12 @@
-
-
 import "package:bloc/bloc.dart";
 import "package:flutter/material.dart";
 import "package:textatize_landing/api/api.dart";
+import "package:textatize_landing/ui/helpers/error_popup.dart";
 
 import "../../models/media.dart";
 
 part "home_event.dart";
+
 part "home_state.dart";
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
@@ -18,7 +18,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit(HomeLoading());
         media = (await TextatizeApi().getMedia(event.mediaId)).media;
         emit(HomeLoaded());
-      } catch(e) {
+      } catch (e) {
+        showDialog(
+            context: event.context, builder: (context) => ErrorDialog(e));
         emit(HomeError(e.toString()));
       }
     });
