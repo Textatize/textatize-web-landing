@@ -18,7 +18,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         media = (await TextatizeApi().getMedia(event.mediaId)).media;
         emit(HomeLoaded());
       } catch (e) {
-        print(e.toString());
         emit(HomeError(e.toString()));
       }
     });
