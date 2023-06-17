@@ -1,5 +1,5 @@
 name: textatize_landing
-description: A new Flutter project.
+description: Textatize Media Landing
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -22,7 +22,6 @@ dependencies:
 
   # Other
   cupertino_icons: ^1.0.2 # Default Flutter Dependency
-  url_strategy: ^0.2.0
   universal_html: ^2.2.3
 
 dev_dependencies:
