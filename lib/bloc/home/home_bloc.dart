@@ -18,11 +18,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         media = (await TextatizeApi().getMedia(event.mediaId)).media;
         emit(HomeLoaded());
       } catch (e) {
-        if(e.toString().toLowerCase().contains("unknown")) {
+        if (e.toString().toLowerCase().contains("unknown")) {
           emit(HomeError("This media does not exist!"));
-
-        }
-        else {
+        } else {
           emit(HomeError(e.toString()));
         }
       }
